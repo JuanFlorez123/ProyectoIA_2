@@ -1,4 +1,5 @@
 
+package ProyectoHH;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
@@ -231,26 +232,46 @@ public class Estado {
                 tablero[fila][col]=0;
             }
         } 
-        for(int i=0;i<27;i++){
+        for(int i=0;i<23;i++){
             int max = casillas.size(); 
             Random rand = new Random(System.currentTimeMillis());
             int idx = rand.nextInt(max);
             Point figura = (Point)casillas.get(idx);
             
-            if(i<20){//cesped
-                tablero[figura.x][figura.y]=3;
-            }
-            if(i>=20 && i<25){//flores
-                tablero[figura.x][figura.y]=4;
-            }
-            if(i==25){
+            if(i==0){
                 tablero[figura.x][figura.y]=1;//caballo blanco
                 posBlanco.setLocation(figura.x, figura.y);
             }
-            if(i==26){
+            if(i==1){
                 tablero[figura.x][figura.y]=2;//caballo negro
                 posNegro.setLocation(figura.x, figura.y);
             }
+            if(i==2){
+                tablero[figura.x][figura.y]=5;//manzana
+            }
+            if(i>2 && i<=17){//cesped
+                tablero[figura.x][figura.y]=3;
+            }
+            if(i>17 && i<23){//flores
+                tablero[figura.x][figura.y]=4;
+            }
+            /*if(i<14){//cesped
+                tablero[figura.x][figura.y]=3;
+            }
+            if(i>=14 && i<19){//flores
+                tablero[figura.x][figura.y]=4;
+            }
+            if(i==20){
+                tablero[figura.x][figura.y]=5;//manzana
+            }
+            if(i==21){
+                tablero[figura.x][figura.y]=1;//caballo blanco
+                posBlanco.setLocation(figura.x, figura.y);
+            }
+            if(i==22){
+                tablero[figura.x][figura.y]=2;//caballo negro
+                posNegro.setLocation(figura.x, figura.y);
+            }*/
             casillas.remove(idx);
         }
         
@@ -260,7 +281,7 @@ public class Estado {
         return inicial;
     }
     
-    static public void imprimirTablero(Estado estado){
+    public static void imprimirTablero(Estado estado){
         int [][] tablero = estado.getTablero();
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
@@ -268,13 +289,14 @@ public class Estado {
             }
             System.out.println();
         }
-       /* HungryHorses.HungryHorses.jugadas.append("posBlanco: "+estado.getPosBlanco());
-        HungryHorses.HungryHorses.jugadas.append("posNegro: "+estado.getPosNegro());
-        HungryHorses.HungryHorses.jugadas.append("ptsBlanco: "+estado.getPuntosB());
-        HungryHorses.HungryHorses.jugadas.append("ptsNegro: "+estado.getPuntosNegro());
-        HungryHorses.HungryHorses.jugadas.append("utilidad: "+estado.calcularUtilidad());
-        HungryHorses.HungryHorses.jugadas.append("profundidad: "+estado.getProfundidad());
-        HungryHorses.HungryHorses.jugadas.append("turno (1) blanco (2) negro: "+estado.getTurno());*/
+        
+        ProyectoHH.HungryHorses.jtJugadas.append("posBlanco: "+estado.getPosBlanco());
+        ProyectoHH.HungryHorses.jtJugadas.append("posNegro: "+estado.getPosNegro());
+        ProyectoHH.HungryHorses.jtJugadas.append("ptsBlanco: "+estado.getPuntosB());
+        ProyectoHH.HungryHorses.jtJugadas.append("ptsNegro: "+estado.getPuntosNegro());
+        ProyectoHH.HungryHorses.jtJugadas.append("utilidad: "+estado.calcularUtilidad());
+        ProyectoHH.HungryHorses.jtJugadas.append("profundidad: "+estado.getProfundidad());
+        ProyectoHH.HungryHorses.jtJugadas.append("turno (1) blanco (2) negro: "+estado.getTurno());
       }
 
 
