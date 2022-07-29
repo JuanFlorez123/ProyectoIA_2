@@ -1,4 +1,5 @@
 
+package ProyectoHH;
 import java.awt.AlphaComposite;
 import java.awt.Composite;
 import java.awt.Graphics;
