@@ -120,6 +120,9 @@ public class Estado {
         if (tablero[accion.x][accion.y] == 4) {
             puntos = 3.0;
         }
+        if (tablero [accion.x][accion.y] == 5){
+            puntos = 5.0;
+        }
         if (this.turno == 1) {
             tablero[posBlanco.x][posBlanco.y] = 0;
             tablero[accion.x][accion.y] = 1; 
