@@ -265,10 +265,10 @@ public class Estado {
             if (i == 3) {
                 tablero[figura.x][figura.y] = 5;//manzana
             }
-            if (i > 3 && i <= 18) {//cesped
+            if (i > 3 && i < 18) {//cesped
                 tablero[figura.x][figura.y] = 3;
             }
-            if (i > 18 && i < 24) {//flores
+            if (i >= 18 && i < 23) {//flores
                 tablero[figura.x][figura.y] = 4;
             }
 

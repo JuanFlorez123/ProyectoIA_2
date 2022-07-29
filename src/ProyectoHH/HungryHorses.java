@@ -198,7 +198,9 @@ public class HungryHorses extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         bJugador1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -291,9 +293,9 @@ public class HungryHorses extends javax.swing.JFrame {
                 .addComponent(cbDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(bJugador1)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -304,7 +306,9 @@ public class HungryHorses extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pTablero.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Tablero de Juego", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 14))); // NOI18N
@@ -452,7 +456,7 @@ public class HungryHorses extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -504,15 +508,14 @@ public class HungryHorses extends javax.swing.JFrame {
 
             }
         } else {
-            jtJugadas.append("MIlagro, Se acabo! " + ptsBlanco + " ------- " + ptsNegro);
+            jtJugadas.append("El juego termina así: " + ptsBlanco + " ------- " + ptsNegro);
             String estadoJuego;
             if (ptsBlanco < ptsNegro) {
-                estadoJuego = "Eres Grande,Ganaste!";
+                estadoJuego = "¡Ganas!";
             } else {
-                estadoJuego = "Sigue Intendandolo, Perdiste! Malo!";
+                estadoJuego = "Perdiste, sigue intentando...";
             }
-            JOptionPane.showMessageDialog(null, "... por fin!!! " + estadoJuego , "REPORTE",  
-                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imagenes/reporte.png"));
+            JOptionPane.showMessageDialog(null, "... por fin!!! " + estadoJuego);
         }
 
         bJugador1.setEnabled(true);
@@ -563,8 +566,7 @@ public class HungryHorses extends javax.swing.JFrame {
             } else {
                 estadoJuego = "Sigue intentandolo, Perdiste!";
             }
-            JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego ,"REPORTE",  
-                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imagenes/estadoJuego.png"));
+            JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
         }
         bJugador2.setEnabled(true);
     }//GEN-LAST:event_bJugador1ActionPerformed
