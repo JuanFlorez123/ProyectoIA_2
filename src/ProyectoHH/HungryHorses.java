@@ -460,7 +460,7 @@ public class HungryHorses extends javax.swing.JFrame {
 
     private void bJugador2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugador2ActionPerformed
         bJugador2.setEnabled(false);
-        if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 35) {
+        if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
 
             if ((jtFila.getText().length() == 0) || (jtColumna.getText().length() == 0)) {
                 JOptionPane.showMessageDialog(null, "ingresar fila y columna para jugar");
@@ -520,13 +520,13 @@ public class HungryHorses extends javax.swing.JFrame {
 
     private void bJugador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugador1ActionPerformed
         bJugador1.setEnabled(false);
-        if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 35) {
+        if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
         jtFila.setText("");
         jtColumna.setText("");
        
-        if (cbDificultad.getSelectedItem() == "Facil") {        nivel = 2;    } 
-        else if (cbDificultad.getSelectedItem() == "Medio") {        nivel = 4;    } 
-        else if (cbDificultad.getSelectedItem() == "Dificil") {        nivel = 6;    }
+        if (cbDificultad.getSelectedItem() == "Principiante") {        nivel = 2;    } 
+        else if (cbDificultad.getSelectedItem() == "Amateur") {        nivel = 4;    } 
+        else if (cbDificultad.getSelectedItem() == "Experto") {        nivel = 6;    }
         
         Minimax mov = new Minimax(raiz);
         mov.decisionMax(raiz, nivel);
