@@ -31,7 +31,7 @@ public class HungryHorses extends javax.swing.JFrame {
     
     //Iconos Tablero
     private CeldasTablero tablero[][];
-    private ImageIcon arregloDeImagenes[] = new ImageIcon[5];
+    private ImageIcon arregloDeImagenes[] = new ImageIcon[6];
 
     public HungryHorses() {
         super("Hungry Horses 1.0.");

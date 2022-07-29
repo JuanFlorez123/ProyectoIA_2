@@ -36,7 +36,7 @@ public class Minimax {
     }
 
     public Point getMovida() {        
-        return movida;    
+        return movida;
     }
 
     public Minimax(Estado actual) {        
