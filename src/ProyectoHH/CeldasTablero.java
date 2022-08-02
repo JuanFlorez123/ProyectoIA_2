@@ -21,7 +21,7 @@ import javax.swing.JLabel;
  * @author Camilo
  */
 public class CeldasTablero extends JLabel {
-    
+     
     private float tran = 0.8f;
     private Image imagen = null;
     private Icon icono;
