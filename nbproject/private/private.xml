@@ -3,10 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/E:/Univalle%20Cali/Ingenieria%20de%20sistemas/Semestre%206/2.%20Inteligencia%20artificial/1.%20Proyecto%202/ProyectoIA_2/src/ProyectoHH/Estado.java</file>
             <file>file:/E:/Univalle%20Cali/Ingenieria%20de%20sistemas/Semestre%206/2.%20Inteligencia%20artificial/1.%20Proyecto%202/ProyectoIA_2/src/ProyectoHH/Minimax.java</file>
             <file>file:/E:/Univalle%20Cali/Ingenieria%20de%20sistemas/Semestre%206/2.%20Inteligencia%20artificial/1.%20Proyecto%202/ProyectoIA_2/src/ProyectoHH/CeldasTablero.java</file>
             <file>file:/E:/Univalle%20Cali/Ingenieria%20de%20sistemas/Semestre%206/2.%20Inteligencia%20artificial/1.%20Proyecto%202/ProyectoIA_2/src/ProyectoHH/HungryHorses.java</file>
+=======
+
+            <file>file:/C:/Users/Camilo/Documents/NetBeansProjects/ProyectoHungryHorses/src/ProyectoHH/Minimax.java</file>
+            <file>file:/C:/Users/Camilo/Documents/NetBeansProjects/ProyectoHungryHorses/src/ProyectoHH/HungryHorses.java</file>
+            <file>file:/C:/Users/Camilo/Documents/NetBeansProjects/ProyectoHungryHorses/src/ProyectoHH/Estado.java</file>
+            <file>file:/C:/Users/Camilo/Documents/NetBeansProjects/ProyectoHungryHorses/src/ProyectoHH/CeldasTablero.java</file>
+>>>>>>> 2d3d7f007461152d025dc06012e0173ef24c12ed
         </group>
     </open-files>
 </project-private>

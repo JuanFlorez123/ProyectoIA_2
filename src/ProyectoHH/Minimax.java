@@ -37,7 +37,7 @@ public class Minimax {
     }
 
     public Point getMovida() {        
-        return movida;    
+        return movida;
     }
 
     public Minimax(Estado actual) {        
@@ -67,7 +67,7 @@ public class Minimax {
         Point decision = new Point();
         List acciones = actual.movidasValidas();
         Point accionRep;
-        Double utilidad = Double.NEGATIVE_INFINITY;
+        Double utilidad = Double.POSITIVE_INFINITY;
         Iterator it = acciones.iterator();
         Point [] puntos=new Point [acciones.size()];
         int z=-1;
@@ -88,7 +88,7 @@ public class Minimax {
         return puntos;
     }
 
-    public Double valorMax(Estado actual, int limite) {
+    public double valorMax(Estado actual, int limite) {
         Double utilidad = Double.NEGATIVE_INFINITY;
         if (actual.terminal(limite)) {
             return actual.calcularUtilidad();
