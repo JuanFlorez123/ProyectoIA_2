@@ -215,9 +215,11 @@ public class HungryHorses extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+
         );
 
         cbDificultad.addActionListener(new java.awt.event.ActionListener() {
@@ -324,9 +326,11 @@ public class HungryHorses extends javax.swing.JFrame {
                 .addComponent(cbDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bJugador1)
+
                 .addGap(31, 31, 31)
+
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -339,7 +343,9 @@ public class HungryHorses extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pTablero.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 14))); // NOI18N
@@ -638,6 +644,7 @@ public class HungryHorses extends javax.swing.JFrame {
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -645,6 +652,7 @@ public class HungryHorses extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
+
         );
 
         pack();
@@ -652,7 +660,7 @@ public class HungryHorses extends javax.swing.JFrame {
 
     private void bJugador2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugador2ActionPerformed
         bJugador2.setEnabled(false);
-        if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 35) {
+        if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
 
             if ((jCBoxFila.getSelectedItem() == "Seleccione fila") || (jCBoxColumna.getSelectedItem() == "Seleccione columna")) {
                 JOptionPane.showMessageDialog(null, "ingresar fila y columna para jugar");
@@ -700,15 +708,14 @@ public class HungryHorses extends javax.swing.JFrame {
 
             }
         } else {
-            jtJugadas.append("MIlagro, Se acabo! " + ptsBlanco + " ------- " + ptsNegro);
+            jtJugadas.append("El juego termina así: " + ptsBlanco + " ------- " + ptsNegro);
             String estadoJuego;
             if (ptsBlanco < ptsNegro) {
-                estadoJuego = "Eres Grande,Ganaste!";
+                estadoJuego = "¡Ganas!";
             } else {
-                estadoJuego = "Sigue Intendandolo, Perdiste! Malo!";
+                estadoJuego = "Perdiste, sigue intentando...";
             }
-            JOptionPane.showMessageDialog(null, "... por fin!!! " + estadoJuego , "REPORTE",  
-                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imagenes/reporte.png"));
+            JOptionPane.showMessageDialog(null, "... por fin!!! " + estadoJuego);
         }
 
         bJugador1.setEnabled(true);
@@ -716,13 +723,15 @@ public class HungryHorses extends javax.swing.JFrame {
 
     private void bJugador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugador1ActionPerformed
         bJugador1.setEnabled(false);
+
         if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 35) {
         //jtFila.setText("");
         //jtColumna.setText("");
+
        
-        if (cbDificultad.getSelectedItem() == "Facil") {        nivel = 2;    } 
-        else if (cbDificultad.getSelectedItem() == "Medio") {        nivel = 4;    } 
-        else if (cbDificultad.getSelectedItem() == "Dificil") {        nivel = 6;    }
+        if (cbDificultad.getSelectedItem() == "Principiante") {        nivel = 2;    } 
+        else if (cbDificultad.getSelectedItem() == "Amateur") {        nivel = 4;    } 
+        else if (cbDificultad.getSelectedItem() == "Experto") {        nivel = 6;    }
         
         Minimax mov = new Minimax(raiz);
         mov.decisionMax(raiz, nivel);
@@ -759,8 +768,7 @@ public class HungryHorses extends javax.swing.JFrame {
             } else {
                 estadoJuego = "Sigue intentandolo, Perdiste!";
             }
-            JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego ,"REPORTE",  
-                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imagenes/estadoJuego.png"));
+            JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
         }
         bJugador2.setEnabled(true);
     }//GEN-LAST:event_bJugador1ActionPerformed
