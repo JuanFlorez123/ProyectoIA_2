@@ -24,12 +24,13 @@ public class HungryHorses extends javax.swing.JFrame {
     private int columnas = 8;
     int k =1;
     int[][] Matriz = new int[8][8];
-    int nivel = 0, contador = 0, ax = 0, ay = 0;
+    int nivel = 2, contador = 0, ax = 0, ay = 0;
     double ptsBlanco = 0.0, ptsNegro = 0.0;
     String txtJugadas = "";
     Point[] punt = null; //posiciones
     Estado raiz = Estado.crearEstadoInicial(filas);
     Estado Nuevo;
+    boolean band = false;
     
     //Iconos Tablero
     private CeldasTablero tablero[][];
@@ -40,7 +41,6 @@ public class HungryHorses extends javax.swing.JFrame {
         initComponents();
       
         //NIveles:
-        cbDificultad.addItem("");
         cbDificultad.addItem("Principiante");
         cbDificultad.addItem("Amateur");
         cbDificultad.addItem("Experto");
@@ -48,6 +48,8 @@ public class HungryHorses extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         bJugador2.setEnabled(false);
+        jCBoxFila.setEnabled(false);
+        jCBoxColumna.setEnabled(false);
         
         //Imagenes Tablero 
         
@@ -236,13 +238,13 @@ public class HungryHorses extends javax.swing.JFrame {
             }
         });
 
-        lNivel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        lNivel.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lNivel.setText("Dificultad: ");
 
-        lFila.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        lFila.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lFila.setText("Fila");
 
-        lColumna.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        lColumna.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lColumna.setText("Columna");
 
         bJugador2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -285,7 +287,7 @@ public class HungryHorses extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lFila)
                     .addComponent(jCBoxFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -293,8 +295,9 @@ public class HungryHorses extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lColumna)
                     .addComponent(jCBoxColumna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bJugador2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bJugador2)
+                .addGap(5, 5, 5))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -321,9 +324,9 @@ public class HungryHorses extends javax.swing.JFrame {
                 .addComponent(cbDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bJugador1)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -336,7 +339,9 @@ public class HungryHorses extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pTablero.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 14))); // NOI18N
@@ -650,17 +655,19 @@ public class HungryHorses extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bJugador2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugador2ActionPerformed
-        bJugador2.setEnabled(false);
+        //bJugador2.setEnabled(false);
         if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
 
             if ((jCBoxFila.getSelectedItem() == "Seleccione fila") || (jCBoxColumna.getSelectedItem() == "Seleccione columna")) {
+                bJugador1.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "ingresar fila y columna para jugar");
+                bJugador2.setEnabled(true);
             } else {
-                //String ex = jtFila.getText();
-                //String ey = jtColumna.getText();
                 
                 String ex = (String) jCBoxFila.getSelectedItem();
                 String ey = (String) jCBoxColumna.getSelectedItem();
+                jCBoxFila.setSelectedIndex(0);
+                jCBoxColumna.setSelectedIndex(0);
                 
                 int entradax = Integer.parseInt(ex);
                 int entraday = Integer.parseInt(ey);
@@ -675,6 +682,11 @@ public class HungryHorses extends javax.swing.JFrame {
                         ax = axs;
                         ay = ays;
                         val = true;
+                        bJugador1.setEnabled(true);
+                        cbDificultad.setEnabled(true);
+                        bJugador2.setEnabled(false);
+                        jCBoxFila.setEnabled(false);
+                        jCBoxColumna.setEnabled(false);
                     }
                 }
 
@@ -689,12 +701,10 @@ public class HungryHorses extends javax.swing.JFrame {
                     }
 
                     lPuntaje2.setText(Double.toString(ptsNegro));
-                    crearTablero(raiz.getTablero());      
-                    //jtFila.setText("");
-                    //jtColumna.setText("");
+                    crearTablero(raiz.getTablero());
                 } else {
-                    JOptionPane.showMessageDialog(null, "Jugada no valida !No sea Bruto","ERROR",  
-                    JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/imagenes/error.png"));
+                    JOptionPane.showMessageDialog(null, "Jugada invalida, en el area de texto se muestra las posibles jugadas");
+                    bJugador1.setEnabled(false);
                 }
 
             }
@@ -702,24 +712,22 @@ public class HungryHorses extends javax.swing.JFrame {
             jtJugadas.append("El juego termina así: " + ptsBlanco + " ------- " + ptsNegro);
             String estadoJuego;
             if (ptsBlanco < ptsNegro) {
-                estadoJuego = "¡Ganas!";
+                estadoJuego = "Ganaste, ha ganado la humanidad";
             } else {
-                estadoJuego = "Perdiste, sigue intentando...";
+                estadoJuego = "Perdiste, ganan los robots";
             }
-            JOptionPane.showMessageDialog(null, "... por fin!!! " + estadoJuego);
+            //JOptionPane.showMessageDialog(null, "... por fin!!! " + estadoJuego);
         }
 
-        bJugador1.setEnabled(true);
+        //bJugador1.setEnabled(true);
     }//GEN-LAST:event_bJugador2ActionPerformed
 
     private void bJugador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugador1ActionPerformed
         bJugador1.setEnabled(false);
+        cbDificultad.setEnabled(false);
 
         if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
-        //jtFila.setText("");
-        //jtColumna.setText("");
-
-       
+                 
         if (cbDificultad.getSelectedItem() == "Principiante") {        nivel = 2;    } 
         else if (cbDificultad.getSelectedItem() == "Amateur") {        nivel = 4;    } 
         else if (cbDificultad.getSelectedItem() == "Experto") {        nivel = 6;    }
@@ -737,6 +745,9 @@ public class HungryHorses extends javax.swing.JFrame {
         Minimax mov1 = new Minimax(Nuevo);
         punt = mov1.decisionMin(Nuevo, nivel);
         Point movida1 = mov1.getMovida();
+        jCBoxFila.setEnabled(true);
+        jCBoxColumna.setEnabled(true);
+        bJugador2.setEnabled(true);
         
         jtJugadas.append( "Jugada "+k+"\n"+"\n");
         for (int i = 0; i < punt.length; i++) {
@@ -745,23 +756,30 @@ public class HungryHorses extends javax.swing.JFrame {
             int ay = (int) nuevop.getY();
         
             txtJugadas = "[" + ax + "," + ay + "]";
-            jtJugadas.append("la jugadas son: " + txtJugadas + "\n");
+            jtJugadas.append("Las jugadas son: " + txtJugadas + "\n");
           }
-            jtJugadas.append("\n"+ "--------------------------------------------"+ "\n");
+            jtJugadas.append("\n"+ "____________________"+ "\n");
             k+=1;
         }
         else {
             jtJugadas.append("fin " + ptsBlanco + " ------- " + ptsNegro);
             
             String estadoJuego;
-            if (ptsBlanco < ptsNegro) {
-                estadoJuego = "Eres Grande, Ganastes!";
-            } else {
-                estadoJuego = "Sigue intentandolo, Perdiste!";
+            if (ptsNegro == 20){
+                estadoJuego = "Ganaste, ha ganado la humanidad y no hay forma de que te supere en puntaje";
             }
-            JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
+            
+            if (ptsBlanco == 20){
+                estadoJuego = "Perdiste, ganan los robots y no hay forma de superarlos en esta partida";
+            }
+            if (ptsBlanco < ptsNegro) {
+                estadoJuego = "Ganaste, ha ganado la humanidad";
+            } else {
+                estadoJuego = "Perdiste, ganan los robots";
+            }
+            //JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
         }
-        bJugador2.setEnabled(true);
+        //bJugador2.setEnabled(true);
     }//GEN-LAST:event_bJugador1ActionPerformed
 
     private void cbDificultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDificultadActionPerformed
