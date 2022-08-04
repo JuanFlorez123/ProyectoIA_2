@@ -728,9 +728,9 @@ public class HungryHorses extends javax.swing.JFrame {
 
         if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
                  
-        if (cbDificultad.getSelectedItem() == "Principiante") {        nivel = 2;    } 
-        else if (cbDificultad.getSelectedItem() == "Amateur") {        nivel = 4;    } 
-        else if (cbDificultad.getSelectedItem() == "Experto") {        nivel = 6;    }
+        if (cbDificultad.getSelectedItem() == "Principiante") {        nivel = 2; System.out.println("principiante" + nivel);   } 
+        else if (cbDificultad.getSelectedItem() == "Amateur") {        nivel = 4; System.out.println("Amateur" + nivel);   } 
+        else if (cbDificultad.getSelectedItem() == "Experto") {        nivel = 6; System.out.println("Experto" + nivel);   }
         
         Minimax mov = new Minimax(raiz);
         mov.decisionMax(raiz, nivel);

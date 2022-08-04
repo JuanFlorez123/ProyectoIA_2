@@ -307,12 +307,20 @@ public class Estado {
 
     public boolean terminal(int limite) {
         boolean seAcaba = false;
-
+        /*
         if (puntosNegro >= 20) {
             seAcaba = true;
             return seAcaba;
         }
         if (puntosBlanco >= 20) {
+            seAcaba = true;
+            return seAcaba;
+        }*/
+        if ((39 - puntosBlanco) < 20) {
+            seAcaba = true;
+            return seAcaba;
+        }
+        if ((39 - puntosNegro) < 20) {
             seAcaba = true;
             return seAcaba;
         }
