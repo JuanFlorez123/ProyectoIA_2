@@ -783,6 +783,7 @@ public class HungryHorses extends javax.swing.JFrame {
             jCBoxColumna.setEnabled(true);
             bJugador2.setEnabled(true);
 
+
             String estadoJuego;
             if (ptsNegro > 19.0) {
                 estadoJuego = "Ganaste, ha ganado la humanidad y no hay forma de que te supere en puntaje";
