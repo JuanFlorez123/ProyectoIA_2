@@ -23,7 +23,7 @@ public class HungryHorses extends javax.swing.JFrame {
     private int columnas = 8;
     int k = 1;
     int[][] Matriz = new int[8][8];
-    int nivel = 2, contador = 0, ax = 0, ay = 0;
+    int nivel = 0, contador = 0, ax = 0, ay = 0;
     double ptsBlanco = 0.0, ptsNegro = 0.0;
     String txtJugadas = "";
     Point[] punt = null; //posiciones
@@ -40,6 +40,7 @@ public class HungryHorses extends javax.swing.JFrame {
         initComponents();
 
         //NIveles:
+        cbDificultad.addItem("Seleccione Dificultad");
         cbDificultad.addItem("Principiante");
         cbDificultad.addItem("Amateur");
         cbDificultad.addItem("Experto");
@@ -100,6 +101,14 @@ public class HungryHorses extends javax.swing.JFrame {
             default:
                 return arregloDeImagenes[0];
 
+        }
+    }
+
+    public boolean verDificultad() {
+        if (cbDificultad.getSelectedItem() == "Seleccione Dificultad") {
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -672,129 +681,137 @@ public class HungryHorses extends javax.swing.JFrame {
 
     private void bJugador2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugador2ActionPerformed
         //bJugador2.setEnabled(false);
-        if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
-
-            if ((jCBoxFila.getSelectedItem() == "Seleccione fila") || (jCBoxColumna.getSelectedItem() == "Seleccione columna")) {
-                bJugador1.setEnabled(false);
-                JOptionPane.showMessageDialog(null, "ingresar fila y columna para jugar");
-                bJugador2.setEnabled(true);
-            } else {
-
-                String ex = (String) jCBoxFila.getSelectedItem();
-                String ey = (String) jCBoxColumna.getSelectedItem();
-                jCBoxFila.setSelectedIndex(0);
-                jCBoxColumna.setSelectedIndex(0);
-
-                int entradax = Integer.parseInt(ex);
-                int entraday = Integer.parseInt(ey);
-                boolean val = false;
-
-                for (int i = 0; i < punt.length; i++) {
-                    Point nuevop = punt[i];
-                    int axs = (int) nuevop.getX();
-                    int ays = (int) nuevop.getY();
-
-                    if ((entradax == axs) && (entraday == ays)) {
-                        ax = axs;
-                        ay = ays;
-                        val = true;
-                        bJugador1.setEnabled(true);
-                        cbDificultad.setEnabled(true);
-                        bJugador2.setEnabled(false);
-                        jCBoxFila.setEnabled(false);
-                        jCBoxColumna.setEnabled(false);
-                    }
-                }
-
-                if (val) {
-
-                    Point movidanueva = new Point(ax, ay);
-                    raiz = Nuevo.resultado(movidanueva);
-                    if (raiz.getPuntosNegro() == 3) {
-                        ptsNegro = ptsNegro + 3;
-                    } else {
-                        ptsNegro = ptsNegro + raiz.getPuntosNegro();
-                    }
-
-                    lPuntaje2.setText(Double.toString(ptsNegro));
-                    crearTablero(raiz.getTablero());
-                    String estadoJuego;
-                    if (ptsNegro > 19.0) {
-                        estadoJuego = "Ganaste, ha ganado la humanidad y no hay forma de que te supere en puntaje";
-                        JOptionPane.showMessageDialog(null, estadoJuego);
-                        System.exit(1);
-                    }
-
-                    if (ptsBlanco > 19.0) {
-                        estadoJuego = "Perdiste, ganan los robots y no hay forma de superarlos en esta partida";
-                        JOptionPane.showMessageDialog(null, estadoJuego);System.exit(1);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Jugada invalida, en el area de texto se muestra las posibles jugadas");
-                    bJugador1.setEnabled(false);
-                }
-
-            }
+        if (verDificultad() == false) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una dificultad");
+            bJugador1.setEnabled(true);
         } else {
-            jtJugadas.append("El juego termina así: " + ptsBlanco + " ------- " + ptsNegro);
-            String estadoJuego;
-            if (ptsBlanco < ptsNegro) {
-                estadoJuego = "Ganaste, ha ganado la humanidad";
-            } else {
-                estadoJuego = "Perdiste, ganan los robots";
-            }
-            //JOptionPane.showMessageDialog(null, "... por fin!!! " + estadoJuego);
-        }
+            if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
 
+                if ((jCBoxFila.getSelectedItem() == "Seleccione fila") || (jCBoxColumna.getSelectedItem() == "Seleccione columna")) {
+                    bJugador1.setEnabled(false);
+                    JOptionPane.showMessageDialog(null, "ingresar fila y columna para jugar");
+                    bJugador2.setEnabled(true);
+                } else {
+
+                    String ex = (String) jCBoxFila.getSelectedItem();
+                    String ey = (String) jCBoxColumna.getSelectedItem();
+                    jCBoxFila.setSelectedIndex(0);
+                    jCBoxColumna.setSelectedIndex(0);
+
+                    int entradax = Integer.parseInt(ex);
+                    int entraday = Integer.parseInt(ey);
+                    boolean val = false;
+
+                    for (int i = 0; i < punt.length; i++) {
+                        Point nuevop = punt[i];
+                        int axs = (int) nuevop.getX();
+                        int ays = (int) nuevop.getY();
+
+                        if ((entradax == axs) && (entraday == ays)) {
+                            ax = axs;
+                            ay = ays;
+                            val = true;
+                            bJugador1.setEnabled(true);
+                            cbDificultad.setEnabled(true);
+                            bJugador2.setEnabled(false);
+                            jCBoxFila.setEnabled(false);
+                            jCBoxColumna.setEnabled(false);
+                        }
+                    }
+
+                    if (val) {
+
+                        Point movidanueva = new Point(ax, ay);
+                        raiz = Nuevo.resultado(movidanueva);
+                        if (raiz.getPuntosNegro() == 3) {
+                            ptsNegro = ptsNegro + 3;
+                        } else {
+                            ptsNegro = ptsNegro + raiz.getPuntosNegro();
+                        }
+
+                        lPuntaje2.setText(Double.toString(ptsNegro));
+                        crearTablero(raiz.getTablero());
+                        String estadoJuego;
+                        if (ptsNegro > 19.0) {
+                            estadoJuego = "Ganaste, ha ganado la humanidad y no hay forma de que te supere en puntaje";
+                            JOptionPane.showMessageDialog(null, estadoJuego);
+                            System.exit(1);
+                        }
+
+                        if (ptsBlanco > 19.0) {
+                            estadoJuego = "Perdiste, ganan los robots y no hay forma de superarlos en esta partida";
+                            JOptionPane.showMessageDialog(null, estadoJuego);
+                            System.exit(1);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Jugada invalida, en el area de texto se muestra las posibles jugadas");
+                        bJugador1.setEnabled(false);
+                    }
+
+                }
+            } else {
+                jtJugadas.append("El juego termina así: " + ptsBlanco + " ------- " + ptsNegro);
+                String estadoJuego;
+                if (ptsBlanco < ptsNegro) {
+                    estadoJuego = "Ganaste, ha ganado la humanidad";
+                } else {
+                    estadoJuego = "Perdiste, ganan los robots";
+                }
+                //JOptionPane.showMessageDialog(null, "... por fin!!! " + estadoJuego);
+            }
+        }
         //bJugador1.setEnabled(true);
     }//GEN-LAST:event_bJugador2ActionPerformed
 
     private void bJugador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugador1ActionPerformed
-        bJugador1.setEnabled(false);
-        cbDificultad.setEnabled(false);
 
-        if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
+        if (verDificultad() == false) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una dificultad");
+            bJugador1.setEnabled(true);
+        } else {
+            bJugador1.setEnabled(false);
+            cbDificultad.setEnabled(false);
+            if ((Double.parseDouble(lPuntaje1.getText()) + Double.parseDouble(lPuntaje2.getText())) < 39) {
 
-            if (cbDificultad.getSelectedItem() == "Principiante") {
-                nivel = 2;
-                System.out.println("Principiante" + nivel);
-            } else if (cbDificultad.getSelectedItem() == "Amateur") {
-                nivel = 4;
-                System.out.println("Amateur" + nivel);
-            } else if (cbDificultad.getSelectedItem() == "Experto") {
-                nivel = 6;
-                System.out.println("Experto" + nivel);
-            }
+                if (cbDificultad.getSelectedItem() == "Principiante") {
+                    nivel = 2;
+                    System.out.println("Principiante" + nivel);
+                } else if (cbDificultad.getSelectedItem() == "Amateur") {
+                    nivel = 4;
+                    System.out.println("Amateur" + nivel);
+                } else if (cbDificultad.getSelectedItem() == "Experto") {
+                    nivel = 6;
+                    System.out.println("Experto" + nivel);
+                }
 
-            Minimax mov = new Minimax(raiz);
-            mov.decisionMax(raiz, nivel);
-            Point movida = mov.getMovida();
-            Nuevo = raiz.resultado(movida);
-            ptsBlanco = ptsBlanco + Nuevo.getPuntosB();
-            String puntosBlanco = Double.toString(ptsBlanco);
-            lPuntaje1.setText(puntosBlanco);
+                Minimax mov = new Minimax(raiz);
+                mov.decisionMax(raiz, nivel);
+                Point movida = mov.getMovida();
+                Nuevo = raiz.resultado(movida);
+                ptsBlanco = ptsBlanco + Nuevo.getPuntosB();
+                String puntosBlanco = Double.toString(ptsBlanco);
+                lPuntaje1.setText(puntosBlanco);
 
-            crearTablero(Nuevo.getTablero());
+                crearTablero(Nuevo.getTablero());
 
-            Minimax mov1 = new Minimax(Nuevo);
-            punt = mov1.decisionMin(Nuevo, nivel);
-            Point movida1 = mov1.getMovida();
-            jCBoxFila.setEnabled(true);
-            jCBoxColumna.setEnabled(true);
-            bJugador2.setEnabled(true);
+                Minimax mov1 = new Minimax(Nuevo);
+                punt = mov1.decisionMin(Nuevo, nivel);
+                Point movida1 = mov1.getMovida();
+                jCBoxFila.setEnabled(true);
+                jCBoxColumna.setEnabled(true);
+                bJugador2.setEnabled(true);
 
+                String estadoJuego;
+                if (ptsNegro > 19.0) {
+                    estadoJuego = "Ganaste, ha ganado la humanidad y no hay forma de que te supere en puntaje";
+                    JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
+                }
 
-            String estadoJuego;
-            if (ptsNegro > 19.0) {
-                estadoJuego = "Ganaste, ha ganado la humanidad y no hay forma de que te supere en puntaje";
-                JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
-            }
-
-            if (ptsBlanco > 19.0) {
-                estadoJuego = "Perdiste, ganan los robots y no hay forma de superarlos en esta partida";
-                JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
-            }
-            /*if (ptsBlanco < ptsNegro) {
+                if (ptsBlanco > 19.0) {
+                    estadoJuego = "Perdiste, ganan los robots y no hay forma de superarlos en esta partida";
+                    JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
+                }
+                /*if (ptsBlanco < ptsNegro) {
                 estadoJuego = "Ganaste, ha ganado la humanidad";
                 JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
             } /*else {
@@ -802,21 +819,21 @@ public class HungryHorses extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
             }*/
 
-            jtJugadas.append("Jugada " + k + "\n" + "\n");
-            for (int i = 0; i < punt.length; i++) {
-                Point nuevop = punt[i];
-                int ax = (int) nuevop.getX();
-                int ay = (int) nuevop.getY();
+                jtJugadas.append("Jugada " + k + "\n" + "\n");
+                for (int i = 0; i < punt.length; i++) {
+                    Point nuevop = punt[i];
+                    int ax = (int) nuevop.getX();
+                    int ay = (int) nuevop.getY();
 
-                txtJugadas = "[" + ax + "," + ay + "]";
-                jtJugadas.append("Las jugadas son: " + txtJugadas + "\n");
-            }
-            jtJugadas.append("\n" + "____________________" + "\n");
-            k += 1;
-        } else {
-            jtJugadas.append("fin " + ptsBlanco + " ------- " + ptsNegro);
+                    txtJugadas = "[" + ax + "," + ay + "]";
+                    jtJugadas.append("Las jugadas son: " + txtJugadas + "\n");
+                }
+                jtJugadas.append("\n" + "____________________" + "\n");
+                k += 1;
+            } else {
+                jtJugadas.append("fin " + ptsBlanco + " ------- " + ptsNegro);
 
-            /*String estadoJuego;
+                /*String estadoJuego;
             if (ptsNegro == 20){
                 estadoJuego = "Ganaste, ha ganado la humanidad y no hay forma de que te supere en puntaje";
             }
@@ -829,9 +846,10 @@ public class HungryHorses extends javax.swing.JFrame {
             } else {
                 estadoJuego = "Perdiste, ganan los robots";
             }*/
-            //JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
+                //JOptionPane.showMessageDialog(null, "... Por fin termino! " + estadoJuego);
+            }
+            //bJugador2.setEnabled(true);
         }
-        //bJugador2.setEnabled(true);
     }//GEN-LAST:event_bJugador1ActionPerformed
 
     private void cbDificultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDificultadActionPerformed
