@@ -88,7 +88,7 @@ public class Minimax {
         return puntos;
     }
 
-    public double valorMax(Estado actual, int limite) {
+    public Double valorMax(Estado actual, int limite) {
         Double utilidad = Double.NEGATIVE_INFINITY;
         if (actual.terminal(limite)) {
             return actual.calcularUtilidad();
@@ -104,7 +104,7 @@ public class Minimax {
         return utilidad;
     }
 
-    public double valorMin(Estado actual, int limite) {
+    public Double valorMin(Estado actual, int limite) {
         Double utilidad2 = Double.POSITIVE_INFINITY;
         if (actual.terminal(limite)) {
             return actual.calcularUtilidad();
